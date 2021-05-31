@@ -16,8 +16,8 @@ randomNumber(2, 14);
 
 
 const findByCoordinates = function (minCoordinate, maxCoordinate, countPoint = 0){
-  if (startNumber >= 0 && endNumber >= 0){
-    if (startNumber < endNumber){
+  if (minCoordinate >= 0 && maxCoordinate >= 0){
+    if (minCoordinate < maxCoordinate){
       return  (minCoordinate - 0.5 + Math.random() * (maxCoordinate - minCoordinate + 1)).toFixed(countPoint); // Формула взята из интернета
     }
     else if (minCoordinate === maxCoordinate){
