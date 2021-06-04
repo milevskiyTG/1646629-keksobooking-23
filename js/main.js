@@ -7,5 +7,5 @@ const findByCoordinates = function (minCoordinate, maxCoordinate, countPoint = 0
   }
   return 'Error: Диапазон не должен быть отрицательным';
 };
-console.log(findByCoordinates(1,100));  // Функция для рандомного числа
-console.log(findByCoordinates(1, 100, 2));
+findByCoordinates(1,100);  // Функция для рандомного числа
+findByCoordinates(1, 100, 2);
