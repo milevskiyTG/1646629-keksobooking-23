@@ -31,11 +31,11 @@ const MAX_LNG = 139.80000;
 const DECIMAL = 5;
 
 const createUser = function(index){
-  let avatar = (index >= 10) ? `img/avatars/user${index}.png`: `img/avatars/user0${index}.png`;
+  const avatar = (index >= 10) ? `img/avatars/user${index}.png`: `img/avatars/user0${index}.png`;
   return{
     avatar: avatar,
-  }
-}
+  };
+};
 
 const createOffer = function(){
   const randomTitle = randomNumber(0, TITLE.length - 1);
@@ -50,32 +50,34 @@ const createOffer = function(){
     title: TITLE[randomTitle],
     address: `${randomNumber(MIN_LAT, MAX_LAT, DECIMAL)}, ${randomNumber(MIN_LNG, MAX_LNG, DECIMAL)}`,
     price: randomNumber(1, 99999),
+    type: TYPE[randomType],
+    rooms: randomNumber(1, 10),
     guests: randomNumber(0, 7),
     checkin: CHECKIN[randomCheckin],
     checkout: CHECKOUT[randomCheckout],
     features: FEATURES[randomFeature],
     description: DESCRIPTION[randomDescription],
     photos: PHOTOS[randomPhoto],
-  }
-}
+  };
+};
 
 const createLocation = function(){
   return{
     lat: randomNumber(MIN_LAT, MAX_LAT, DECIMAL),
     lng: randomNumber(MIN_LNG, MAX_LNG, DECIMAL),
-  }
-}
+  };
+};
 
 const createAd = function(amount){
-  let ads = [];
+  const ads = [];
   for(let i = 1; i <= amount; i++){
-    let ad = {};
+    const ad = {};
     ad.author = createUser(i);
     ad.offer = createOffer();
     ad.location = createLocation();
     ads.push(ad);
-  }
+  };
   return ads;
-}
+};
 
 console.log(createAd(10));
