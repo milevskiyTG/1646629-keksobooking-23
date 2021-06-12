@@ -68,7 +68,7 @@ const createLocation = function(){
 
 const createAd = function(amount){
   const ads = [];
-  for(let index = 1; i <= amount; i++){
+  for(let index = 1; index <= amount; index++){
     const ad = {};
     ad.author = createUser(index);
     ad.offer = createOffer();
