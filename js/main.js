@@ -10,8 +10,6 @@ const randomNumber = function (minCoordinate, maxCoordinate, countPoint = 0){
 randomNumber(1,100);  // Функция для рандомного числа
 randomNumber(1, 100, 2);
 
-
-
 const TITLE = ['Удобное жилье', 'Лучшее расположение', 'Отличное место', 'Красивый вид', 'Спокойное проживание', 'Близко до метро'];
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const CHECKIN = ['12:00', '13:00', '14:00'];
@@ -70,14 +68,14 @@ const createLocation = function(){
 
 const createAd = function(amount){
   const ads = [];
-  for(let i = 1; i <= amount; i++){
+  for(let index = 1; i <= amount; i++){
     const ad = {};
-    ad.author = createUser(i);
+    ad.author = createUser(index);
     ad.offer = createOffer();
     ad.location = createLocation();
     ads.push(ad);
-  };
+  }
   return ads;
 };
 
-console.log(createAd(10));
+createAd(10);
