@@ -78,4 +78,4 @@ const createAd = function(amount){
   return ads;
 };
 
-console.log(createAd(10));
+createAd(10);
