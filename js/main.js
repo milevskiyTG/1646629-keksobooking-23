@@ -7,8 +7,6 @@ const randomNumber = function (minCoordinate, maxCoordinate, countPoint = 0){
   }
   return 'Error: Диапазон не должен быть отрицательным';
 };
-randomNumber(1,100);  // Функция для рандомного числа
-randomNumber(1, 100, 2);
 
 const TITLE = ['Удобное жилье', 'Лучшее расположение', 'Отличное место', 'Красивый вид', 'Спокойное проживание', 'Близко до метро'];
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
@@ -22,47 +20,49 @@ const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'condit
 const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
-const MIN_LAT = 35.65000;
-const MAX_LAT = 35.70000;
-const MIN_LNG = 139.70000;
-const MAX_LNG = 139.80000;
-const DECIMAL = 5;
+const lat = randomNumber(35.65000, 35.70000, 5);
+const lng = randomNumber(139.70000, 139.80000, 5);
 
 const createUser = function(index){
-  const avatar = (index >= 10) ? `img/avatars/user${index}.png`: `img/avatars/user0${index}.png`;
-  return{
-    avatar: avatar,
-  };
+  return (index >= 10) ? `img/avatars/user${index}.png`: `img/avatars/user0${index}.png`;
 };
 
+const getRandomElementFromArray = function(array){
+  const index = randomNumber(0, array.length - 1);
+  return array[index];
+};
+function getRandomArray(array) {
+  const lengthOfArray = randomNumber(1, array.length - 1);
+  const newArray = [];
+  while (newArray.length < lengthOfArray) {
+    const indexOfElement = randomNumber(0, array.length - 1);
+    const element = array[indexOfElement];
+    if (!newArray.includes(element)) {
+      newArray.push(element);
+    }
+  }
+  return newArray;
+}
 const createOffer = function(){
-  const randomTitle = randomNumber(0, TITLE.length - 1);
-  const randomType = randomNumber(0, TYPE.length - 1);
-  const randomCheckin = randomNumber(0, CHECKIN.length - 1);
-  const randomCheckout = randomNumber(0, CHECKOUT.length - 1);
-  const randomDescription = randomNumber(0, DESCRIPTION.length - 1);
-  const randomFeature = randomNumber(0, FEATURES.length - 1);
-  const randomPhoto = randomNumber(0, PHOTOS.length - 1);
-
   return {
-    title: TITLE[randomTitle],
-    address: `${randomNumber(MIN_LAT, MAX_LAT, DECIMAL)}, ${randomNumber(MIN_LNG, MAX_LNG, DECIMAL)}`,
+    title: getRandomElementFromArray(TITLE),
+    address: `${lat}, ${lng}`,
     price: randomNumber(1, 99999),
-    type: TYPE[randomType],
+    type: getRandomElementFromArray(TYPE),
     rooms: randomNumber(1, 10),
     guests: randomNumber(0, 7),
-    checkin: CHECKIN[randomCheckin],
-    checkout: CHECKOUT[randomCheckout],
-    features: FEATURES[randomFeature],
-    description: DESCRIPTION[randomDescription],
-    photos: PHOTOS[randomPhoto],
+    checkin: getRandomElementFromArray(CHECKIN),
+    checkout: getRandomElementFromArray(CHECKOUT),
+    features: getRandomArray(FEATURES),
+    description: getRandomElementFromArray(DESCRIPTION),
+    photos: getRandomArray(PHOTOS),
   };
 };
 
 const createLocation = function(){
   return{
-    lat: randomNumber(MIN_LAT, MAX_LAT, DECIMAL),
-    lng: randomNumber(MIN_LNG, MAX_LNG, DECIMAL),
+    lat: lat,
+    lng: lng,
   };
 };
 
@@ -78,4 +78,4 @@ const createAd = function(amount){
   return ads;
 };
 
-createAd(10);
+console.log(createAd(10));
