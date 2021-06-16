@@ -1,13 +1,3 @@
-const randomNumber = function (minCoordinate, maxCoordinate, countPoint = 0){
-  if (minCoordinate >= 0 && maxCoordinate >= 0){
-    if (minCoordinate < maxCoordinate){
-      return  (Math.random() * (maxCoordinate - minCoordinate) + minCoordinate).toFixed(countPoint); // Формула взята из интернета
-    }
-    return (minCoordinate === maxCoordinate) ? minCoordinate : 'Error: Диапазон с такими значениями невозможен';
-  }
-  return 'Error: Диапазон не должен быть отрицательным';
-};
-
 const TITLE = ['Удобное жилье', 'Лучшее расположение', 'Отличное место', 'Красивый вид', 'Спокойное проживание', 'Близко до метро'];
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const CHECKIN = ['12:00', '13:00', '14:00'];
@@ -20,8 +10,16 @@ const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'condit
 const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
-const lat = randomNumber(35.65000, 35.70000, 5);
-const lng = randomNumber(139.70000, 139.80000, 5);
+
+const randomNumber = function (minCoordinate, maxCoordinate, countPoint = 0){
+  if (minCoordinate >= 0 && maxCoordinate >= 0){
+    if (minCoordinate < maxCoordinate){
+      return  (Math.random() * (maxCoordinate - minCoordinate) + minCoordinate).toFixed(countPoint); // Формула взята из интернета
+    }
+    return (minCoordinate === maxCoordinate) ? minCoordinate : 'Error: Диапазон с такими значениями невозможен';
+  }
+  return 'Error: Диапазон не должен быть отрицательным';
+};
 
 const createUser = function(index){
   return (index >= 10) ? `img/avatars/user${index}.png`: `img/avatars/user0${index}.png`;
@@ -43,7 +41,7 @@ function getRandomArray(array) {
   }
   return newArray;
 }
-const createOffer = function(){
+const createOffer = function(lat, lng){
   return {
     title: getRandomElementFromArray(TITLE),
     address: `${lat}, ${lng}`,
@@ -59,7 +57,7 @@ const createOffer = function(){
   };
 };
 
-const createLocation = function(){
+const createLocation = function(lat, lng){
   return{
     lat: lat,
     lng: lng,
@@ -69,10 +67,12 @@ const createLocation = function(){
 const createAd = function(amount){
   const ads = [];
   for(let index = 1; index <= amount; index++){
+    const lat = randomNumber(35.65000, 35.70000, 5);
+    const lng = randomNumber(139.70000, 139.80000, 5);
     const ad = {};
     ad.author = createUser(index);
-    ad.offer = createOffer();
-    ad.location = createLocation();
+    ad.offer = createOffer(lat, lng);
+    ad.location = createLocation(lat, lng);
     ads.push(ad);
   }
   return ads;
