@@ -1,3 +1,4 @@
+import {randomNumber, getRandomElementFromArray, getRandomArray} from './util.js';
 const TITLE = ['Удобное жилье', 'Лучшее расположение', 'Отличное место', 'Красивый вид', 'Спокойное проживание', 'Близко до метро'];
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const CHECKIN = ['12:00', '13:00', '14:00'];
@@ -52,4 +53,6 @@ const createAd = function(amount){
   return ads;
 };
 
-createAd(10);
+const newAd = createAd(10);
+
+export {newAd};

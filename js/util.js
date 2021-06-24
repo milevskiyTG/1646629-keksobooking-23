@@ -26,7 +26,4 @@ function getRandomArray(array) {
   return newArray;
 }
 
-getRandomElementFromArray();
-getRandomArray();
-
 export {randomNumber, getRandomArray, getRandomElementFromArray};
